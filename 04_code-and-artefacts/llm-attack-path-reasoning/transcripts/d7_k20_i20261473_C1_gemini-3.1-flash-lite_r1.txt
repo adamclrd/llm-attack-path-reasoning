@@ -1,0 +1,107 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h31,asset_x)
+  reachable(external,h01,5000)
+  runs(h01,svc_gamma,3.7)
+  runs(h31,drv_net,3.0)
+  runs(h69,kern,3.7)
+  trusts(h69,h01)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h28,attacker)
+    effects: hasShell(h52,attacker)
+  VULN-002
+    preconditions: hasShell(h91,attacker)
+    effects: hasShell(h88,attacker)
+  VULN-003
+    preconditions: hasShell(h01,attacker)
+    effects: hasShell(h91,attacker)
+  VULN-004
+    preconditions: hasPriv(h31,attacker,root), dataAt(h31,asset_v)
+    effects: exfiltrated(asset_x)
+  VULN-005
+    preconditions: hasShell(h01,attacker), trusts(h69,h01)
+    effects: hasShell(h87,attacker)
+  VULN-006
+    preconditions: reachable(external,h01,3000), runs(h01,svc_gamma,3.7)
+    effects: hasShell(h01,attacker)
+  VULN-007
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_ops,h02)
+    effects: hasShell(h23,attacker)
+  VULN-008
+    preconditions: hasShell(h69,attacker)
+    effects: exfiltrated(asset_z)
+  VULN-009
+    preconditions: hasShell(h69,attacker)
+    effects: hasShell(h28,attacker)
+  VULN-010
+    preconditions: hasShell(h83,attacker), trusts(h69,h01)
+    effects: hasShell(h69,attacker)
+  VULN-011
+    preconditions: hasPriv(h69,attacker,root)
+    effects: exfiltrated(asset_w)
+  VULN-012
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_back,h84)
+    effects: hasShell(h97,attacker)
+  VULN-013
+    preconditions: hasPriv(h20,attacker,root)
+    effects: hasShell(h05,attacker)
+  VULN-014
+    preconditions: hasShell(h69,attacker), runs(h69,kern,3.7)
+    effects: hasPriv(h69,attacker,root)
+  VULN-015
+    preconditions: hasShell(h31,attacker), runs(h93,drv_net,3.0)
+    effects: hasPriv(h31,attacker,root)
+  VULN-016
+    preconditions: hasPriv(h31,attacker,root), dataAt(h31,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-017
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h32)
+    effects: hasShell(h10,attacker)
+  VULN-018
+    preconditions: hasShell(h31,attacker), runs(h55,drv_net,3.0)
+    effects: hasPriv(h31,attacker,root)
+  VULN-019
+    preconditions: hasPriv(h69,attacker,root)
+    effects: hasCred(attacker,acct_ops), credValidOn(acct_ops,h31)
+  VULN-020
+    preconditions: hasShell(h16,attacker), runs(h16,svc_delta,4.2)
+    effects: hasShell(h48,attacker)
+  VULN-021
+    preconditions: hasShell(h52,attacker)
+    effects: hasShell(h22,attacker)
+  VULN-022
+    preconditions: hasShell(h01,attacker), trusts(h69,h01)
+    effects: hasShell(h69,attacker)
+  VULN-023
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h31)
+    effects: hasShell(h31,attacker)
+  VULN-024
+    preconditions: hasShell(h88,attacker)
+    effects: hasShell(h07,attacker)
+  VULN-025
+    preconditions: reachable(external,h01,5000), runs(h01,svc_gamma,3.7)
+    effects: hasShell(h01,attacker)
+  VULN-026
+    preconditions: hasShell(h01,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-027
+    preconditions: hasShell(h31,attacker), runs(h31,drv_net,3.0)
+    effects: hasPriv(h31,attacker,root)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+{"chain": ["VULN-025", "VULN-022", "VULN-014", "VULN-019", "VULN-023", "VULN-027", "VULN-016"], "reasoning": "The attacker gains shell on h01, moves to h69 to gain root privileges, uses those to obtain credentials for h31, gains shell on h31, escalates to root on h31, and finally exfiltrates asset_x."}

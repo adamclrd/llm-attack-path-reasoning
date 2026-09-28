@@ -1,0 +1,4 @@
+# stats.py
+numpy>=1.21
+# make_figures.py
+matplotlib>=3.5

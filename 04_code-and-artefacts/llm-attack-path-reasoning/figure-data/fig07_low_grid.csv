@@ -1,0 +1,7 @@
+series,nominal_distractors,successes,runs,discovery_rate_pct,wilson_95_low,wilson_95_high,data_source
+C1 qwen2.5:14b,5,18,24,75.0,55.1,88.0,recorded
+C1 qwen2.5:14b,10,20,24,83.3,64.1,93.3,recorded
+C1 qwen2.5:14b,20,15,32,46.9,30.9,63.6,recorded
+C1 gemini-3.5-flash-lite,5,24,24,100.0,86.2,100.0,recorded
+C1 gemini-3.5-flash-lite,10,24,24,100.0,86.2,100.0,recorded
+C1 gemini-3.5-flash-lite,20,31,32,96.9,84.3,99.4,recorded

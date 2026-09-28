@@ -1,0 +1,21 @@
+# API keys -- never commit these
+.env
+.env.*
+*.key
+
+# generated output
+figures/
+tables.md
+results_*.csv
+pddl/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# editors and OS
+.vscode/
+.idea/
+.DS_Store

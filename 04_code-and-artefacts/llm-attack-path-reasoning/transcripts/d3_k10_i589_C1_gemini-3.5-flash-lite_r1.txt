@@ -1,0 +1,65 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h74,asset_x)
+  reachable(external,h74,8443)
+  runs(h74,drv_blk,4.2)
+  runs(h74,svc_eta,1.0)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h74,attacker), runs(h74,kern,4.2)
+    effects: hasPriv(h74,attacker,root)
+  VULN-002
+    preconditions: hasPriv(h74,attacker,root), dataAt(h74,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-003
+    preconditions: hasShell(h74,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-004
+    preconditions: reachable(external,h74,8443), runs(h74,svc_eta,1.0)
+    effects: hasShell(h74,attacker)
+  VULN-005
+    preconditions: reachable(external,h74,8443), runs(h74,svc_alpha,1.0)
+    effects: hasShell(h74,attacker)
+  VULN-006
+    preconditions: hasShell(h63,attacker)
+    effects: hasShell(h42,attacker)
+  VULN-007
+    preconditions: hasShell(h74,attacker), runs(h74,drv_blk,4.2)
+    effects: hasPriv(h58,attacker,root)
+  VULN-008
+    preconditions: hasShell(h74,attacker), runs(h74,drv_blk,4.2)
+    effects: hasPriv(h74,attacker,root)
+  VULN-009
+    preconditions: hasShell(h74,attacker)
+    effects: hasShell(h63,attacker)
+  VULN-010
+    preconditions: hasPriv(h74,attacker,root)
+    effects: exfiltrated(asset_z)
+  VULN-011
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_svc,h20)
+    effects: hasShell(h86,attacker)
+  VULN-012
+    preconditions: hasPriv(h25,attacker,root)
+    effects: hasShell(h82,attacker)
+  VULN-013
+    preconditions: hasShell(h42,attacker)
+    effects: hasShell(h78,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+```json
+{"chain": ["VULN-004", "VULN-008", "VULN-002"], "reasoning": "First, VULN-004 gains a shell on h74 using the reachable port and svc_eta. Next, VULN-008 escalates privileges to root on h74 using the shell and drv_blk driver. Finally, VULN-002 exfiltrates asset_x using root privileges and the target data on h74."}
+```

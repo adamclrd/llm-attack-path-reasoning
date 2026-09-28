@@ -1,0 +1,44 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h78,asset_x)
+  reachable(external,h78,5000)
+  runs(h78,svc_zeta,1.2)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h78,attacker)
+    effects: hasShell(h04,attacker)
+  VULN-002
+    preconditions: reachable(external,h78,5000), runs(h78,svc_zeta,1.2)
+    effects: hasShell(h47,attacker)
+  VULN-003
+    preconditions: reachable(external,h78,5000), runs(h78,svc_zeta,1.2)
+    effects: hasShell(h78,attacker)
+  VULN-004
+    preconditions: hasShell(h78,attacker), dataAt(h78,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-005
+    preconditions: hasShell(h04,attacker)
+    effects: hasShell(h13,attacker)
+  VULN-006
+    preconditions: hasShell(h78,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-007
+    preconditions: reachable(external,h78,5000), runs(h78,svc_zeta,1.2)
+    effects: hasShell(h61,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+{"chain": ["VULN-003", "VULN-004"], "reasoning": "First, use VULN-003 to gain a shell on h78, then use VULN-004 to exfiltrate asset_x."}

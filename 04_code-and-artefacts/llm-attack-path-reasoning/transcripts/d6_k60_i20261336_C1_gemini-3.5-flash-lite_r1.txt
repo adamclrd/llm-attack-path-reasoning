@@ -1,0 +1,225 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  config(h53,no_sandbox)
+  dataAt(h53,asset_x)
+  reachable(external,h04,5000)
+  runs(h04,libc,1.0)
+  runs(h04,svc_delta,3.0)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasPriv(h51,attacker,root)
+    effects: hasShell(h56,attacker)
+  VULN-002
+    preconditions: hasPriv(h04,attacker,root)
+    effects: exfiltrated(asset_z)
+  VULN-003
+    preconditions: credValidOn(acct_repl,h53)
+    effects: exfiltrated(asset_v)
+  VULN-004
+    preconditions: hasCred(attacker,acct_repl), credValidOn(acct_repl,h53)
+    effects: hasShell(h76,attacker)
+  VULN-005
+    preconditions: hasShell(h14,attacker)
+    effects: hasShell(h64,attacker)
+  VULN-006
+    preconditions: hasShell(h04,attacker)
+    effects: hasShell(h46,attacker)
+  VULN-007
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasCred(attacker,acct_repl), credValidOn(acct_repl,h53)
+  VULN-008
+    preconditions: reachable(external,h04,5000), runs(h04,svc_delta,3.0)
+    effects: hasShell(h04,attacker)
+  VULN-009
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_back,h71)
+    effects: hasShell(h50,attacker)
+  VULN-010
+    preconditions: hasShell(h39,attacker)
+    effects: hasShell(h85,attacker)
+  VULN-011
+    preconditions: hasPriv(h53,attacker,root)
+    effects: exfiltrated(asset_y)
+  VULN-012
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h27)
+    effects: hasShell(h06,attacker)
+  VULN-013
+    preconditions: hasShell(h04,attacker), runs(h40,libc,1.0)
+    effects: hasPriv(h04,attacker,root)
+  VULN-014
+    preconditions: hasShell(h61,attacker)
+    effects: hasShell(h73,attacker)
+  VULN-015
+    preconditions: hasShell(h04,attacker)
+    effects: hasShell(h74,attacker)
+  VULN-016
+    preconditions: hasCred(attacker,acct_repl)
+    effects: exfiltrated(asset_w)
+  VULN-017
+    preconditions: hasPriv(h60,attacker,root)
+    effects: hasShell(h24,attacker)
+  VULN-018
+    preconditions: reachable(external,h04,5000), runs(h04,svc_delta,5.4)
+    effects: hasShell(h04,attacker)
+  VULN-019
+    preconditions: hasCred(attacker,acct_repl), credValidOn(acct_ops,h09)
+    effects: hasShell(h96,attacker)
+  VULN-020
+    preconditions: hasCred(attacker,acct_repl), credValidOn(acct_repl,h53)
+    effects: hasShell(h53,attacker)
+  VULN-021
+    preconditions: hasShell(h42,attacker)
+    effects: hasShell(h39,attacker)
+  VULN-022
+    preconditions: reachable(external,h04,5000), runs(h04,svc_delta,3.0)
+    effects: hasShell(h05,attacker)
+  VULN-023
+    preconditions: hasShell(h86,attacker)
+    effects: hasShell(h61,attacker)
+  VULN-024
+    preconditions: hasShell(h53,attacker), config(h53,no_sandbox)
+    effects: hasPriv(h23,attacker,root)
+  VULN-025
+    preconditions: hasPriv(h08,attacker,root)
+    effects: hasShell(h02,attacker)
+  VULN-026
+    preconditions: hasShell(h78,attacker)
+    effects: hasShell(h20,attacker)
+  VULN-027
+    preconditions: hasShell(h04,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-028
+    preconditions: reachable(external,h04,5000), runs(h04,svc_delta,3.0)
+    effects: hasShell(h28,attacker)
+  VULN-029
+    preconditions: hasShell(h04,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h37,attacker,root)
+  VULN-030
+    preconditions: hasShell(h04,attacker)
+    effects: exfiltrated(asset_w)
+  VULN-031
+    preconditions: hasShell(h04,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h81,attacker,root)
+  VULN-032
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h98)
+    effects: hasShell(h47,attacker)
+  VULN-033
+    preconditions: hasShell(h74,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-034
+    preconditions: hasShell(h70,attacker)
+    effects: hasShell(h83,attacker)
+  VULN-035
+    preconditions: hasPriv(h53,attacker,admin), dataAt(h53,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-036
+    preconditions: hasShell(h04,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h04,attacker,root)
+  VULN-037
+    preconditions: hasShell(h63,attacker), runs(h63,svc_delta,4.2)
+    effects: hasShell(h97,attacker)
+  VULN-038
+    preconditions: hasShell(h18,attacker)
+    effects: hasShell(h70,attacker)
+  VULN-039
+    preconditions: hasShell(h11,attacker), runs(h11,svc_epsilon,5.4)
+    effects: hasShell(h58,attacker)
+  VULN-040
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_z)
+  VULN-041
+    preconditions: hasShell(h04,attacker), runs(h04,drv_blk,1.0)
+    effects: hasPriv(h04,attacker,root)
+  VULN-042
+    preconditions: hasShell(h03,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h04,attacker,root)
+  VULN-043
+    preconditions: hasShell(h35,attacker), runs(h35,svc_eta,2.1)
+    effects: hasShell(h90,attacker)
+  VULN-044
+    preconditions: credValidOn(acct_repl,h53)
+    effects: hasShell(h18,attacker)
+  VULN-045
+    preconditions: hasShell(h53,attacker)
+    effects: exfiltrated(asset_u)
+  VULN-046
+    preconditions: hasPriv(h66,attacker,root)
+    effects: hasShell(h31,attacker)
+  VULN-047
+    preconditions: hasCred(attacker,acct_repl), credValidOn(acct_repl,h53)
+    effects: hasShell(h57,attacker)
+  VULN-048
+    preconditions: hasPriv(h55,attacker,root)
+    effects: hasShell(h91,attacker)
+  VULN-049
+    preconditions: hasPriv(h04,attacker,admin)
+    effects: hasCred(attacker,acct_repl), credValidOn(acct_repl,h53)
+  VULN-050
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h89,attacker)
+  VULN-051
+    preconditions: hasShell(h04,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h01,attacker,root)
+  VULN-052
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h82,attacker)
+  VULN-053
+    preconditions: hasShell(h84,attacker), runs(h84,svc_epsilon,2.4)
+    effects: hasShell(h77,attacker)
+  VULN-054
+    preconditions: hasCred(attacker,acct_repl)
+    effects: hasShell(h42,attacker)
+  VULN-055
+    preconditions: hasShell(h88,attacker), runs(h88,svc_epsilon,2.4)
+    effects: hasShell(h21,attacker)
+  VULN-056
+    preconditions: hasShell(h46,attacker)
+    effects: hasShell(h78,attacker)
+  VULN-057
+    preconditions: hasPriv(h53,attacker,user), dataAt(h53,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-058
+    preconditions: hasShell(h04,attacker), runs(h04,libc,1.0)
+    effects: hasPriv(h87,attacker,root)
+  VULN-059
+    preconditions: hasCred(attacker,acct_repl), credValidOn(acct_repl,h32)
+    effects: hasShell(h53,attacker)
+  VULN-060
+    preconditions: hasPriv(h53,attacker,root), dataAt(h53,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-061
+    preconditions: hasShell(h82,attacker)
+    effects: hasShell(h14,attacker)
+  VULN-062
+    preconditions: hasPriv(h04,attacker,root)
+    effects: exfiltrated(asset_v)
+  VULN-063
+    preconditions: hasShell(h53,attacker), config(h53,no_sandbox)
+    effects: hasPriv(h29,attacker,root)
+  VULN-064
+    preconditions: hasShell(h53,attacker), config(h53,no_sandbox)
+    effects: hasPriv(h53,attacker,root)
+  VULN-065
+    preconditions: hasPriv(h36,attacker,root)
+    effects: hasShell(h10,attacker)
+  VULN-066
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h86,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+```json
+{"chain": ["VULN-008", "VULN-036", "VULN-007", "VULN-020", "VULN-064", "VULN-060"], "reasoning": "We first gain a shell on h04, escalate to root on h04, extract credentials for h53, gain a shell on h53 using those credentials, escalate to root on h53 due to no_sandbox config, and finally exfiltrate asset_x from h53."}
+```

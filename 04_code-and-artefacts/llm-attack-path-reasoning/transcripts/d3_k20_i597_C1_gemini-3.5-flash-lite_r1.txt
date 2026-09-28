@@ -1,0 +1,95 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h77,asset_x)
+  reachable(external,h77,9090)
+  runs(h77,libc,5.4)
+  runs(h77,svc_eta,1.2)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h77,attacker), runs(h77,libc,5.4)
+    effects: hasPriv(h73,attacker,root)
+  VULN-002
+    preconditions: hasPriv(h77,attacker,root), dataAt(h28,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-003
+    preconditions: hasShell(h40,attacker), runs(h40,svc_zeta,1.0)
+    effects: hasShell(h53,attacker)
+  VULN-004
+    preconditions: hasShell(h77,attacker)
+    effects: hasShell(h06,attacker)
+  VULN-005
+    preconditions: hasShell(h77,attacker)
+    effects: hasShell(h84,attacker)
+  VULN-006
+    preconditions: hasShell(h77,attacker), runs(h77,libc,5.4)
+    effects: hasPriv(h42,attacker,root)
+  VULN-007
+    preconditions: hasShell(h57,attacker), runs(h57,svc_theta,4.2)
+    effects: hasShell(h82,attacker)
+  VULN-008
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_w)
+  VULN-009
+    preconditions: hasPriv(h77,attacker,user), dataAt(h77,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-010
+    preconditions: hasShell(h21,attacker), runs(h77,libc,5.4)
+    effects: hasPriv(h77,attacker,root)
+  VULN-011
+    preconditions: hasShell(h77,attacker), runs(h77,libc,5.4)
+    effects: hasPriv(h81,attacker,root)
+  VULN-012
+    preconditions: hasShell(h06,attacker)
+    effects: hasShell(h68,attacker)
+  VULN-013
+    preconditions: hasPriv(h45,attacker,root)
+    effects: hasShell(h76,attacker)
+  VULN-014
+    preconditions: hasShell(h77,attacker), runs(h77,libc,5.4)
+    effects: hasPriv(h77,attacker,root)
+  VULN-015
+    preconditions: hasPriv(h89,attacker,root)
+    effects: hasShell(h43,attacker)
+  VULN-016
+    preconditions: hasPriv(h29,attacker,root)
+    effects: hasShell(h38,attacker)
+  VULN-017
+    preconditions: hasShell(h84,attacker)
+    effects: hasShell(h64,attacker)
+  VULN-018
+    preconditions: hasPriv(h77,attacker,root), dataAt(h77,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-019
+    preconditions: hasShell(h64,attacker)
+    effects: hasShell(h54,attacker)
+  VULN-020
+    preconditions: hasShell(h68,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-021
+    preconditions: reachable(external,h77,9090), runs(h77,svc_eta,1.2)
+    effects: hasShell(h77,attacker)
+  VULN-022
+    preconditions: hasPriv(h77,attacker,root)
+    effects: exfiltrated(asset_z)
+  VULN-023
+    preconditions: hasShell(h77,attacker)
+    effects: exfiltrated(asset_y)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+```json
+{"chain": ["VULN-021", "VULN-014", "VULN-018"], "reasoning": "First gain a shell on h77 using VULN-021, elevate privileges to root using VULN-014, and finally exfiltrate asset_x using VULN-018."}
+```

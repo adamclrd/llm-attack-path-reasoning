@@ -1,0 +1,21 @@
+series,nominal_distractors,successes,runs,discovery_rate_pct,wilson_95_low,wilson_95_high,data_source
+C1 gemini-3.1-flash-lite,20,31,32,96.9,84.3,99.4,rebuilt from transcripts
+C1 gemini-3.1-flash-lite,30,27,32,84.4,68.2,93.1,rebuilt from transcripts
+C1 gemini-3.1-flash-lite,40,27,32,84.4,68.2,93.1,rebuilt from transcripts
+C1 gemini-3.1-flash-lite,50,27,32,84.4,68.2,93.1,rebuilt from transcripts
+C1 gemini-3.1-flash-lite,60,26,31,83.9,67.4,92.9,rebuilt from transcripts
+C1 gemini-3.5-flash-lite,20,34,40,85.0,70.9,92.9,recorded
+C1 gemini-3.5-flash-lite,30,28,32,87.5,71.9,95.0,recorded
+C1 gemini-3.5-flash-lite,40,26,32,81.2,64.7,91.1,recorded
+C1 gemini-3.5-flash-lite,50,22,32,68.8,51.4,82.0,recorded
+C1 gemini-3.5-flash-lite,60,15,32,46.9,30.9,63.6,recorded
+B1 bfs,20,40,40,100.0,91.2,100.0,recorded
+B1 bfs,30,32,32,100.0,89.3,100.0,recorded
+B1 bfs,40,32,32,100.0,89.3,100.0,recorded
+B1 bfs,50,32,32,100.0,89.3,100.0,recorded
+B1 bfs,60,32,32,100.0,89.3,100.0,recorded
+B3 random,20,18,200,9.0,5.8,13.8,recorded
+B3 random,30,10,160,6.2,3.4,11.1,recorded
+B3 random,40,6,160,3.8,1.7,7.9,recorded
+B3 random,50,3,160,1.9,0.6,5.4,recorded
+B3 random,60,2,160,1.2,0.3,4.4,recorded

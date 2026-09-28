@@ -1,0 +1,59 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h17,asset_x)
+  reachable(external,h17,9000)
+  runs(h17,svc_theta,4.2)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_z)
+  VULN-002
+    preconditions: hasShell(h53,attacker), runs(h53,svc_eta,4.2)
+    effects: hasShell(h97,attacker)
+  VULN-003
+    preconditions: hasShell(h93,attacker), dataAt(h17,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-004
+    preconditions: hasShell(h17,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-005
+    preconditions: hasPriv(h37,attacker,root)
+    effects: hasShell(h86,attacker)
+  VULN-006
+    preconditions: hasShell(h17,attacker), dataAt(h17,asset_w)
+    effects: exfiltrated(asset_x)
+  VULN-007
+    preconditions: reachable(external,h17,9000), runs(h17,svc_theta,4.2)
+    effects: hasShell(h17,attacker)
+  VULN-008
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h62,attacker)
+  VULN-009
+    preconditions: reachable(external,h17,9000), runs(h99,svc_theta,4.2)
+    effects: hasShell(h17,attacker)
+  VULN-010
+    preconditions: hasShell(h26,attacker)
+    effects: hasShell(h74,attacker)
+  VULN-011
+    preconditions: hasShell(h17,attacker), dataAt(h17,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-012
+    preconditions: hasShell(h62,attacker)
+    effects: hasShell(h26,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+{"chain": ["VULN-007", "VULN-011"], "reasoning": "First, VULN-007 is used to gain a shell on h17 due to the service running and external reachability. Then, VULN-011 is used to exfiltrate asset_x since the shell is now available and the asset is present on h17."}

@@ -1,0 +1,645 @@
+--- turn 1 ---
+You are analysing a network security scenario, one step at a time.
+
+Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+The CURRENT STATE below is maintained for you and is always correct. You do not have to track it yourself. Choose the single vulnerability to use next.
+
+CURRENT STATE:
+  config(h38,debug_on)
+  dataAt(h38,asset_x)
+  reachable(external,h05,80)
+  runs(h05,svc_eta,3.0)
+  trusts(h38,h05)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h23,attacker)
+  VULN-002
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h24,attacker)
+  VULN-003
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-004
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h12,attacker)
+  VULN-005
+    preconditions: hasShell(h19,attacker)
+    effects: hasShell(h40,attacker)
+  VULN-006
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h38,attacker)
+  VULN-007
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h93,attacker)
+  VULN-008
+    preconditions: hasShell(h28,attacker), runs(h28,svc_alpha,4.2)
+    effects: hasShell(h76,attacker)
+  VULN-009
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h33,attacker)
+  VULN-010
+    preconditions: hasShell(h38,attacker), config(h92,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-011
+    preconditions: hasShell(h88,attacker)
+    effects: hasShell(h86,attacker)
+  VULN-012
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h82,attacker)
+  VULN-013
+    preconditions: hasPriv(h98,attacker,root)
+    effects: hasShell(h75,attacker)
+  VULN-014
+    preconditions: hasPriv(h38,attacker,root)
+    effects: exfiltrated(asset_w)
+  VULN-015
+    preconditions: hasShell(h83,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-016
+    preconditions: hasPriv(h38,attacker,root), dataAt(h38,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-017
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-018
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h19,attacker)
+  VULN-019
+    preconditions: hasShell(h38,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-020
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_v)
+  VULN-021
+    preconditions: hasPriv(h36,attacker,root)
+    effects: hasShell(h95,attacker)
+  VULN-022
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_z)
+  VULN-023
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h34)
+    effects: hasShell(h55,attacker)
+  VULN-024
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-025
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_u)
+  VULN-026
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h51,attacker)
+  VULN-027
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h26,attacker)
+  VULN-028
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h50)
+    effects: hasShell(h03,attacker)
+  VULN-029
+    preconditions: hasShell(h79,attacker)
+    effects: hasShell(h52,attacker)
+  VULN-030
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h05,attacker)
+  VULN-031
+    preconditions: hasShell(h05,attacker), trusts(h71,h05)
+    effects: hasShell(h38,attacker)
+  VULN-032
+    preconditions: hasPriv(h18,attacker,root)
+    effects: hasShell(h39,attacker)
+  VULN-033
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h25,attacker)
+  VULN-034
+    preconditions: hasShell(h82,attacker)
+    effects: hasShell(h46,attacker)
+  VULN-035
+    preconditions: hasPriv(h14,attacker,root)
+    effects: hasShell(h70,attacker)
+  VULN-036
+    preconditions: hasShell(h38,attacker), config(h38,world_writable)
+    effects: hasPriv(h38,attacker,root)
+  VULN-037
+    preconditions: hasShell(h86,attacker)
+    effects: hasShell(h80,attacker)
+  VULN-038
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h58,attacker)
+  VULN-039
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h88,attacker)
+  VULN-040
+    preconditions: hasShell(h40,attacker)
+    effects: hasShell(h94,attacker)
+  VULN-041
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h87,attacker)
+  VULN-042
+    preconditions: hasShell(h58,attacker)
+    effects: hasShell(h79,attacker)
+  VULN-043
+    preconditions: hasPriv(h06,attacker,root)
+    effects: hasShell(h13,attacker)
+  VULN-044
+    preconditions: hasPriv(h07,attacker,root)
+    effects: hasShell(h02,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with one identifier, as a JSON object and nothing else:
+{"next": "ID", "reasoning": "one sentence"}
+
+If no sequence can reach the goal from the current state, answer {"next": "NONE", "reasoning": "..."}.
+
+>>> ```json
+{"next": "VULN-030", "reasoning": "VULN-030 is currently executable because its preconditions (reachable(external,h05,80) and runs(h05,svc_eta,3.0)) are met in the CURRENT STATE, and it grants a shell on h05 needed for further lateral movement."}
+```
+
+--- turn 2 ---
+You are analysing a network security scenario, one step at a time.
+
+Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+The CURRENT STATE below is maintained for you and is always correct. You do not have to track it yourself. Choose the single vulnerability to use next.
+
+CURRENT STATE:
+  config(h38,debug_on)
+  dataAt(h38,asset_x)
+  hasShell(h05,attacker)
+  reachable(external,h05,80)
+  runs(h05,svc_eta,3.0)
+  trusts(h38,h05)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h23,attacker)
+  VULN-002
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h24,attacker)
+  VULN-003
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-004
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h12,attacker)
+  VULN-005
+    preconditions: hasShell(h19,attacker)
+    effects: hasShell(h40,attacker)
+  VULN-006
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h38,attacker)
+  VULN-007
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h93,attacker)
+  VULN-008
+    preconditions: hasShell(h28,attacker), runs(h28,svc_alpha,4.2)
+    effects: hasShell(h76,attacker)
+  VULN-009
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h33,attacker)
+  VULN-010
+    preconditions: hasShell(h38,attacker), config(h92,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-011
+    preconditions: hasShell(h88,attacker)
+    effects: hasShell(h86,attacker)
+  VULN-012
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h82,attacker)
+  VULN-013
+    preconditions: hasPriv(h98,attacker,root)
+    effects: hasShell(h75,attacker)
+  VULN-014
+    preconditions: hasPriv(h38,attacker,root)
+    effects: exfiltrated(asset_w)
+  VULN-015
+    preconditions: hasShell(h83,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-016
+    preconditions: hasPriv(h38,attacker,root), dataAt(h38,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-017
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-018
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h19,attacker)
+  VULN-019
+    preconditions: hasShell(h38,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-020
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_v)
+  VULN-021
+    preconditions: hasPriv(h36,attacker,root)
+    effects: hasShell(h95,attacker)
+  VULN-022
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_z)
+  VULN-023
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h34)
+    effects: hasShell(h55,attacker)
+  VULN-024
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-025
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_u)
+  VULN-026
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h51,attacker)
+  VULN-027
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h26,attacker)
+  VULN-028
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h50)
+    effects: hasShell(h03,attacker)
+  VULN-029
+    preconditions: hasShell(h79,attacker)
+    effects: hasShell(h52,attacker)
+  VULN-030
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h05,attacker)
+  VULN-031
+    preconditions: hasShell(h05,attacker), trusts(h71,h05)
+    effects: hasShell(h38,attacker)
+  VULN-032
+    preconditions: hasPriv(h18,attacker,root)
+    effects: hasShell(h39,attacker)
+  VULN-033
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h25,attacker)
+  VULN-034
+    preconditions: hasShell(h82,attacker)
+    effects: hasShell(h46,attacker)
+  VULN-035
+    preconditions: hasPriv(h14,attacker,root)
+    effects: hasShell(h70,attacker)
+  VULN-036
+    preconditions: hasShell(h38,attacker), config(h38,world_writable)
+    effects: hasPriv(h38,attacker,root)
+  VULN-037
+    preconditions: hasShell(h86,attacker)
+    effects: hasShell(h80,attacker)
+  VULN-038
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h58,attacker)
+  VULN-039
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h88,attacker)
+  VULN-040
+    preconditions: hasShell(h40,attacker)
+    effects: hasShell(h94,attacker)
+  VULN-041
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h87,attacker)
+  VULN-042
+    preconditions: hasShell(h58,attacker)
+    effects: hasShell(h79,attacker)
+  VULN-043
+    preconditions: hasPriv(h06,attacker,root)
+    effects: hasShell(h13,attacker)
+  VULN-044
+    preconditions: hasPriv(h07,attacker,root)
+    effects: hasShell(h02,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with one identifier, as a JSON object and nothing else:
+{"next": "ID", "reasoning": "one sentence"}
+
+If no sequence can reach the goal from the current state, answer {"next": "NONE", "reasoning": "..."}.
+
+>>> ```json
+{"next": "VULN-006", "reasoning": "VULN-006 requires hasShell(h05,attacker) and trusts(h38,h05), both of which are currently true, and yields hasShell(h38,attacker) to progress toward root privilege on h38."}
+```
+
+--- turn 3 ---
+You are analysing a network security scenario, one step at a time.
+
+Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+The CURRENT STATE below is maintained for you and is always correct. You do not have to track it yourself. Choose the single vulnerability to use next.
+
+CURRENT STATE:
+  config(h38,debug_on)
+  dataAt(h38,asset_x)
+  hasShell(h05,attacker)
+  hasShell(h38,attacker)
+  reachable(external,h05,80)
+  runs(h05,svc_eta,3.0)
+  trusts(h38,h05)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h23,attacker)
+  VULN-002
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h24,attacker)
+  VULN-003
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-004
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h12,attacker)
+  VULN-005
+    preconditions: hasShell(h19,attacker)
+    effects: hasShell(h40,attacker)
+  VULN-006
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h38,attacker)
+  VULN-007
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h93,attacker)
+  VULN-008
+    preconditions: hasShell(h28,attacker), runs(h28,svc_alpha,4.2)
+    effects: hasShell(h76,attacker)
+  VULN-009
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h33,attacker)
+  VULN-010
+    preconditions: hasShell(h38,attacker), config(h92,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-011
+    preconditions: hasShell(h88,attacker)
+    effects: hasShell(h86,attacker)
+  VULN-012
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h82,attacker)
+  VULN-013
+    preconditions: hasPriv(h98,attacker,root)
+    effects: hasShell(h75,attacker)
+  VULN-014
+    preconditions: hasPriv(h38,attacker,root)
+    effects: exfiltrated(asset_w)
+  VULN-015
+    preconditions: hasShell(h83,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-016
+    preconditions: hasPriv(h38,attacker,root), dataAt(h38,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-017
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-018
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h19,attacker)
+  VULN-019
+    preconditions: hasShell(h38,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-020
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_v)
+  VULN-021
+    preconditions: hasPriv(h36,attacker,root)
+    effects: hasShell(h95,attacker)
+  VULN-022
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_z)
+  VULN-023
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h34)
+    effects: hasShell(h55,attacker)
+  VULN-024
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-025
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_u)
+  VULN-026
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h51,attacker)
+  VULN-027
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h26,attacker)
+  VULN-028
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h50)
+    effects: hasShell(h03,attacker)
+  VULN-029
+    preconditions: hasShell(h79,attacker)
+    effects: hasShell(h52,attacker)
+  VULN-030
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h05,attacker)
+  VULN-031
+    preconditions: hasShell(h05,attacker), trusts(h71,h05)
+    effects: hasShell(h38,attacker)
+  VULN-032
+    preconditions: hasPriv(h18,attacker,root)
+    effects: hasShell(h39,attacker)
+  VULN-033
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h25,attacker)
+  VULN-034
+    preconditions: hasShell(h82,attacker)
+    effects: hasShell(h46,attacker)
+  VULN-035
+    preconditions: hasPriv(h14,attacker,root)
+    effects: hasShell(h70,attacker)
+  VULN-036
+    preconditions: hasShell(h38,attacker), config(h38,world_writable)
+    effects: hasPriv(h38,attacker,root)
+  VULN-037
+    preconditions: hasShell(h86,attacker)
+    effects: hasShell(h80,attacker)
+  VULN-038
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h58,attacker)
+  VULN-039
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h88,attacker)
+  VULN-040
+    preconditions: hasShell(h40,attacker)
+    effects: hasShell(h94,attacker)
+  VULN-041
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h87,attacker)
+  VULN-042
+    preconditions: hasShell(h58,attacker)
+    effects: hasShell(h79,attacker)
+  VULN-043
+    preconditions: hasPriv(h06,attacker,root)
+    effects: hasShell(h13,attacker)
+  VULN-044
+    preconditions: hasPriv(h07,attacker,root)
+    effects: hasShell(h02,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with one identifier, as a JSON object and nothing else:
+{"next": "ID", "reasoning": "one sentence"}
+
+If no sequence can reach the goal from the current state, answer {"next": "NONE", "reasoning": "..."}.
+
+>>> ```json
+{"next": "VULN-019", "reasoning": "VULN-019 requires hasShell(h38,attacker) and config(h38,debug_on), both of which are currently satisfied, and grants root privileges on h38 needed for the final step."}
+```
+
+--- turn 4 ---
+You are analysing a network security scenario, one step at a time.
+
+Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+The CURRENT STATE below is maintained for you and is always correct. You do not have to track it yourself. Choose the single vulnerability to use next.
+
+CURRENT STATE:
+  config(h38,debug_on)
+  dataAt(h38,asset_x)
+  hasPriv(h38,attacker,root)
+  hasShell(h05,attacker)
+  hasShell(h38,attacker)
+  reachable(external,h05,80)
+  runs(h05,svc_eta,3.0)
+  trusts(h38,h05)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h23,attacker)
+  VULN-002
+    preconditions: hasPriv(h04,attacker,root)
+    effects: hasShell(h24,attacker)
+  VULN-003
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h17,attacker)
+  VULN-004
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h12,attacker)
+  VULN-005
+    preconditions: hasShell(h19,attacker)
+    effects: hasShell(h40,attacker)
+  VULN-006
+    preconditions: hasShell(h05,attacker), trusts(h38,h05)
+    effects: hasShell(h38,attacker)
+  VULN-007
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h93,attacker)
+  VULN-008
+    preconditions: hasShell(h28,attacker), runs(h28,svc_alpha,4.2)
+    effects: hasShell(h76,attacker)
+  VULN-009
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h33,attacker)
+  VULN-010
+    preconditions: hasShell(h38,attacker), config(h92,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-011
+    preconditions: hasShell(h88,attacker)
+    effects: hasShell(h86,attacker)
+  VULN-012
+    preconditions: hasShell(h17,attacker)
+    effects: hasShell(h82,attacker)
+  VULN-013
+    preconditions: hasPriv(h98,attacker,root)
+    effects: hasShell(h75,attacker)
+  VULN-014
+    preconditions: hasPriv(h38,attacker,root)
+    effects: exfiltrated(asset_w)
+  VULN-015
+    preconditions: hasShell(h83,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-016
+    preconditions: hasPriv(h38,attacker,root), dataAt(h38,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-017
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-018
+    preconditions: hasShell(h05,attacker)
+    effects: hasShell(h19,attacker)
+  VULN-019
+    preconditions: hasShell(h38,attacker), config(h38,debug_on)
+    effects: hasPriv(h38,attacker,root)
+  VULN-020
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_v)
+  VULN-021
+    preconditions: hasPriv(h36,attacker,root)
+    effects: hasShell(h95,attacker)
+  VULN-022
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_z)
+  VULN-023
+    preconditions: hasCred(attacker,acct_svc), credValidOn(acct_repl,h34)
+    effects: hasShell(h55,attacker)
+  VULN-024
+    preconditions: hasShell(h38,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-025
+    preconditions: hasShell(h05,attacker)
+    effects: exfiltrated(asset_u)
+  VULN-026
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h51,attacker)
+  VULN-027
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h26,attacker)
+  VULN-028
+    preconditions: hasCred(attacker,acct_ops), credValidOn(acct_ops,h50)
+    effects: hasShell(h03,attacker)
+  VULN-029
+    preconditions: hasShell(h79,attacker)
+    effects: hasShell(h52,attacker)
+  VULN-030
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h05,attacker)
+  VULN-031
+    preconditions: hasShell(h05,attacker), trusts(h71,h05)
+    effects: hasShell(h38,attacker)
+  VULN-032
+    preconditions: hasPriv(h18,attacker,root)
+    effects: hasShell(h39,attacker)
+  VULN-033
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h25,attacker)
+  VULN-034
+    preconditions: hasShell(h82,attacker)
+    effects: hasShell(h46,attacker)
+  VULN-035
+    preconditions: hasPriv(h14,attacker,root)
+    effects: hasShell(h70,attacker)
+  VULN-036
+    preconditions: hasShell(h38,attacker), config(h38,world_writable)
+    effects: hasPriv(h38,attacker,root)
+  VULN-037
+    preconditions: hasShell(h86,attacker)
+    effects: hasShell(h80,attacker)
+  VULN-038
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h58,attacker)
+  VULN-039
+    preconditions: hasShell(h38,attacker)
+    effects: hasShell(h88,attacker)
+  VULN-040
+    preconditions: hasShell(h40,attacker)
+    effects: hasShell(h94,attacker)
+  VULN-041
+    preconditions: reachable(external,h05,80), runs(h05,svc_eta,3.0)
+    effects: hasShell(h87,attacker)
+  VULN-042
+    preconditions: hasShell(h58,attacker)
+    effects: hasShell(h79,attacker)
+  VULN-043
+    preconditions: hasPriv(h06,attacker,root)
+    effects: hasShell(h13,attacker)
+  VULN-044
+    preconditions: hasPriv(h07,attacker,root)
+    effects: hasShell(h02,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with one identifier, as a JSON object and nothing else:
+{"next": "ID", "reasoning": "one sentence"}
+
+If no sequence can reach the goal from the current state, answer {"next": "NONE", "reasoning": "..."}.
+
+>>> ```json
+{"next": "VULN-016", "reasoning": "The current state already satisfies all preconditions for VULN-016 (hasPriv(h38,attacker,root) and dataAt(h38,asset_x)), which will directly achieve the goal of exfiltrating asset_x."}
+```

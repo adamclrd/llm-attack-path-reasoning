@@ -1,0 +1,91 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h84,asset_x)
+  reachable(external,h84,5000)
+  runs(h84,svc_alpha,2.4)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h84,attacker)
+    effects: hasShell(h91,attacker)
+  VULN-002
+    preconditions: reachable(external,h84,5000), runs(h84,svc_alpha,2.4)
+    effects: hasShell(h01,attacker)
+  VULN-003
+    preconditions: hasPriv(h03,attacker,root)
+    effects: hasShell(h98,attacker)
+  VULN-004
+    preconditions: reachable(external,h84,5000), runs(h84,svc_alpha,2.4)
+    effects: hasShell(h28,attacker)
+  VULN-005
+    preconditions: reachable(external,h84,5000), runs(h84,svc_alpha,2.4)
+    effects: hasShell(h84,attacker)
+  VULN-006
+    preconditions: reachable(external,h84,5000), runs(h72,svc_alpha,2.4)
+    effects: hasShell(h84,attacker)
+  VULN-007
+    preconditions: hasShell(h14,attacker), runs(h14,svc_delta,2.4)
+    effects: hasShell(h19,attacker)
+  VULN-008
+    preconditions: hasShell(h84,attacker), dataAt(h22,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-009
+    preconditions: hasShell(h36,attacker)
+    effects: hasShell(h62,attacker)
+  VULN-010
+    preconditions: reachable(external,h84,5000), runs(h84,svc_alpha,2.4)
+    effects: hasShell(h96,attacker)
+  VULN-011
+    preconditions: hasPriv(h58,attacker,root)
+    effects: hasShell(h33,attacker)
+  VULN-012
+    preconditions: hasShell(h91,attacker)
+    effects: hasShell(h68,attacker)
+  VULN-013
+    preconditions: hasPriv(h48,attacker,root)
+    effects: hasShell(h92,attacker)
+  VULN-014
+    preconditions: hasShell(h84,attacker)
+    effects: hasShell(h75,attacker)
+  VULN-015
+    preconditions: hasShell(h84,attacker), dataAt(h84,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-016
+    preconditions: hasShell(h84,attacker)
+    effects: exfiltrated(asset_w)
+  VULN-017
+    preconditions: reachable(external,h84,5000), runs(h84,svc_alpha,2.4)
+    effects: hasShell(h77,attacker)
+  VULN-018
+    preconditions: hasShell(h84,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-019
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_z)
+  VULN-020
+    preconditions: hasShell(h75,attacker)
+    effects: hasShell(h36,attacker)
+  VULN-021
+    preconditions: hasPriv(h10,attacker,root)
+    effects: hasShell(h76,attacker)
+  VULN-022
+    preconditions: hasShell(h68,attacker)
+    effects: hasShell(h45,attacker)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+```json
+{"chain": ["VULN-005", "VULN-015"], "reasoning": "First, use VULN-005 to gain a shell on h84 using the initial network reachability and service state. Then, use VULN-015 with the obtained shell and the local asset data to exfiltrate asset_x and achieve the goal."}
+```

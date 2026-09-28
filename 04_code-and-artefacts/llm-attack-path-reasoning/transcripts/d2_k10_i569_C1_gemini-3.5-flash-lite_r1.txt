@@ -1,0 +1,61 @@
+You are analysing a network security scenario.
+
+You are given the facts that are true at the start, a list of vulnerabilities, and a goal. Each vulnerability has preconditions (all must be true before it can be used) and effects (facts that become true after it is used). Facts are only ever added, never removed.
+
+Find an ordered sequence of vulnerabilities leading from the initial state to the goal.
+
+INITIAL STATE:
+  dataAt(h52,asset_x)
+  reachable(external,h52,3000)
+  runs(h52,svc_zeta,2.4)
+
+AVAILABLE VULNERABILITIES:
+  VULN-001
+    preconditions: hasShell(h25,attacker)
+    effects: hasShell(h62,attacker)
+  VULN-002
+    preconditions: reachable(external,h35,3000), runs(h52,svc_zeta,2.4)
+    effects: hasShell(h52,attacker)
+  VULN-003
+    preconditions: reachable(external,h52,3000), runs(h52,svc_zeta,2.4)
+    effects: hasShell(h52,attacker)
+  VULN-004
+    preconditions: hasShell(h52,attacker), dataAt(h52,asset_x)
+    effects: exfiltrated(asset_x)
+  VULN-005
+    preconditions: hasShell(h60,attacker), runs(h60,svc_gamma,5.4)
+    effects: hasShell(h66,attacker)
+  VULN-006
+    preconditions: reachable(external,h52,3000), runs(h52,svc_zeta,2.4)
+    effects: hasShell(h79,attacker)
+  VULN-007
+    preconditions: reachable(external,h52,3000), runs(h52,svc_zeta,2.4)
+    effects: hasShell(h50,attacker)
+  VULN-008
+    preconditions: hasShell(h52,attacker)
+    effects: exfiltrated(asset_y)
+  VULN-009
+    preconditions: hasShell(h36,attacker), runs(h36,svc_eta,3.7)
+    effects: hasShell(h65,attacker)
+  VULN-010
+    preconditions: hasShell(h62,attacker)
+    effects: hasShell(h30,attacker)
+  VULN-011
+    preconditions: hasShell(h52,attacker)
+    effects: hasShell(h25,attacker)
+  VULN-012
+    preconditions: exfiltrated(asset_x)
+    effects: exfiltrated(asset_z)
+
+GOAL:
+  exfiltrated(asset_x)
+
+Answer with a JSON object and nothing else:
+{"chain": ["ID-1", "ID-2"], "reasoning": "one or two sentences"}
+
+If no valid sequence exists, answer {"chain": [], "reasoning": "..."}.
+
+===== RESPONSE =====
+```json
+{"chain": ["VULN-003", "VULN-004"], "reasoning": "VULN-003 uses initial network access to gain a shell on h52, and VULN-004 then uses the shell and the local asset data to exfiltrate asset_x."}
+```

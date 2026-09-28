@@ -1,0 +1,5 @@
+configuration,measure,steps_per_instance,data_source
+C1,proposed by the model,0.84,paper Table 10
+C1,left in the returned chain,0.84,paper Table 10
+C2,proposed by the model,0.56,paper Table 10
+C2,left in the returned chain,0.0,0 by construction
