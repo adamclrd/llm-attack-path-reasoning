@@ -19,3 +19,7 @@ venv/
 .vscode/
 .idea/
 .DS_Store
+
+# the original run logs are part of the release
+!logs/
+!logs/*.csv

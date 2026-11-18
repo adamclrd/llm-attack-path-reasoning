@@ -47,28 +47,30 @@ C_B3 = "#d62728"     # random choice
 C_QWEN = "#9467bd"   # qwen2.5:14b
 
 # ------------------------------------------------------------------ results
-# Counts (successes, runs) taken from the result tables of the paper.
-# B3 is given as a rate only (five runs per instance).
+# Counts (successes, runs) from the result tables of the revised paper, which
+# analysis/tables.py computes from logs/final.csv; each grid uses only the
+# instances of its own scenario file. B3 is given as a rate (five runs per instance).
 
 RESULTS = {
     "by_depth": {                       # main grid, pooled over distractors
         "depths": [4, 5, 6, 7],
-        "gemini-3.1-flash-lite": [(40, 40), (36, 40), (33, 39), (29, 40)],
-        "gemini-3.5-flash-lite": [(45, 48), (26, 40), (29, 40), (25, 40)],
-        "B3": [10.8, 3.0, 2.0, 1.5],
+        "gemini-3.1-flash-lite": [(40, 40), (36, 40), (33, 40), (29, 40)],
+        "gemini-3.5-flash-lite": [(37, 40), (26, 40), (29, 40), (25, 40)],
+        "B3": [9.5, 3.0, 2.0, 1.5],
     },
     "by_distractors": {                 # main grid, pooled over depths
         "k": [20, 30, 40, 50, 60],
         "gemini-3.1-flash-lite": [(31, 32), (27, 32), (27, 32), (27, 32),
-                                  (26, 31)],
-        "gemini-3.5-flash-lite": [(34, 40), (28, 32), (26, 32), (22, 32),
+                                  (26, 32)],
+        "gemini-3.5-flash-lite": [(26, 32), (28, 32), (26, 32), (22, 32),
                                   (15, 32)],
-        "B3": [9.0, 6.2, 3.8, 1.9, 1.2],
+        "B3": [6.9, 6.2, 3.8, 1.9, 1.2],
     },
     "low_grid": {                       # depths 2 to 4, pooled over depths
         "k": [5, 10, 20],
-        "qwen2.5:14b": [(18, 24), (20, 24), (15, 32)],
-        "gemini-3.5-flash-lite": [(24, 24), (24, 24), (31, 32)],
+        "qwen2.5:14b": [(18, 24), (20, 24), (13, 24)],
+        "gemini-3.5-flash-lite": [(24, 24), (24, 24), (23, 24)],
+        "B3": [67.5, 56.7, 36.7],
     },
     "paired": {                         # 32 paired instances, C1 against C2
         "discovery": {"C1": (25, 32), "C2": (27, 32)},
@@ -367,6 +369,8 @@ def low_grid(path):
     model_line(ax, xs, r["qwen2.5:14b"], "o-", C_QWEN, "C1, qwen2.5:14b")
     model_line(ax, xs, r["gemini-3.5-flash-lite"], "s--", C_G35,
                "C1, gemini-3.5-flash-lite")
+    ax.plot(xs, r["B3"], "v-.", color=C_B3, label="B3 (random)",
+            markersize=5, linewidth=1.3)
     ax.set_xticks(xs)
     rate_axes(ax, "Nominal distractor count")
     ax.legend(fontsize=7.5, frameon=True, framealpha=0.9, loc="lower left")

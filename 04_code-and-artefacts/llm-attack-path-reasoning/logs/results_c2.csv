@@ -1,0 +1,56 @@
+scenario,depth,distractors,nominal_k,branching_mean,minimal_chains,system,provider,model,run,success,valid_steps,invalid_steps,repeat_proposals,turns,chain_len,ref_len,exact_match,time_s,in_tokens,out_tokens,chain,error
+d4_k20_i20260828,4,20,20,9.75,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,0.9344,1282,86,VULN-011|VULN-022|VULN-002|VULN-023,
+d4_k20_i20260828,4,20,20,9.75,1,C2,gemini,gemini-flash-lite-latest,1,1,4,0,0,4,4,4,1,5.1146,5208,299,VULN-011|VULN-022|VULN-002|VULN-023,
+d4_k20_i20260831,4,20,20,6.25,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,1.1809,1270,147,VULN-022|VULN-004|VULN-002|VULN-006,
+d4_k20_i20260831,4,20,20,6.25,1,C2,gemini,gemini-flash-lite-latest,1,0,9,0,0,10,9,4,0,9.9899,11545,601,VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018,call failed: HTTP Error 429: Too Many Requests
+d4_k40_i20260891,4,40,40,14.0,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,1.0353,2084,115,VULN-018|VULN-015|VULN-030|VULN-005,
+d4_k40_i20260891,4,40,40,14.0,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,4,0,0.3273,0,0,,call failed: HTTP Error 429: Too Many Requests
+d4_k40_i20260897,4,40,40,15.5,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,1.1598,2080,85,VULN-030|VULN-006|VULN-019|VULN-016,
+d4_k40_i20260897,4,40,40,15.5,1,C2,gemini,gemini-flash-lite-latest,1,1,4,0,0,4,4,4,1,4.4537,8400,270,VULN-030|VULN-006|VULN-019|VULN-016,
+d4_k60_i20260933,4,60,60,17.75,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,1.0838,2964,118,VULN-023|VULN-016|VULN-053|VULN-010,
+d4_k60_i20260933,4,60,60,17.75,1,C2,gemini,gemini-flash-lite-latest,1,1,4,0,0,4,4,4,1,3.6569,11936,273,VULN-023|VULN-016|VULN-053|VULN-010,
+d4_k60_i20260942,4,60,60,16.0,1,C1,gemini,gemini-flash-lite-latest,1,1,4,0,0,1,4,4,1,2.354,3003,95,VULN-028|VULN-052|VULN-014|VULN-042,
+d4_k60_i20260942,4,60,60,16.0,1,C2,gemini,gemini-flash-lite-latest,1,1,5,0,0,5,5,4,0,6.3247,15109,376,VULN-028|VULN-028|VULN-052|VULN-014|VULN-042,
+d5_k20_i20260963,5,20,20,8.2,1,C1,gemini,gemini-flash-lite-latest,1,1,5,0,0,1,5,5,1,1.0237,1332,133,VULN-010|VULN-022|VULN-006|VULN-021|VULN-016,
+d5_k20_i20260963,5,20,20,8.2,1,C2,gemini,gemini-flash-lite-latest,1,1,6,0,0,6,6,5,0,9.5497,8213,437,VULN-010|VULN-013|VULN-022|VULN-006|VULN-021|VULN-016,
+d5_k20_i20260970,5,20,20,11.0,1,C1,gemini,gemini-flash-lite-latest,1,0,4,4,0,1,8,5,0,1.2553,1346,126,VULN-007|VULN-008|VULN-023|VULN-006|VULN-004|VULN-002|VULN-005|VULN-021,
+d5_k20_i20260970,5,20,20,11.0,1,C2,gemini,gemini-flash-lite-latest,1,1,5,0,0,5,5,5,1,17.7325,6893,340,VULN-007|VULN-017|VULN-015|VULN-005|VULN-021,
+d5_k40_i20261025,5,40,40,11.2,1,C1,gemini,gemini-flash-lite-latest,1,1,5,0,0,1,5,5,1,1.4179,2180,103,VULN-042|VULN-016|VULN-032|VULN-038|VULN-033,
+d5_k40_i20261025,5,40,40,11.2,1,C2,gemini,gemini-flash-lite-latest,1,0,20,0,0,20,20,5,0,60.5728,44067,1264,VULN-042|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016|VULN-016,
+d5_k40_i20261028,5,40,40,12.2,1,C1,gemini,gemini-flash-lite-latest,1,1,5,0,0,1,5,5,1,1.6528,2160,101,VULN-011|VULN-037|VULN-015|VULN-021|VULN-008,
+d5_k40_i20261028,5,40,40,12.2,1,C2,gemini,gemini-flash-lite-latest,1,0,2,8,0,11,2,5,0,11.4414,22114,677,VULN-011|VULN-007,call failed: HTTP Error 429: Too Many Requests
+d5_k60_i20261110,5,60,60,16.6,1,C1,gemini,gemini-flash-lite-latest,1,0,4,1,0,1,5,5,0,1.4943,3046,131,VULN-019|VULN-036|VULN-060|VULN-043|VULN-004,
+d5_k60_i20261110,5,60,60,16.6,1,C2,gemini,gemini-flash-lite-latest,1,1,5,0,0,5,5,5,1,6.4711,15393,295,VULN-019|VULN-036|VULN-060|VULN-043|VULN-062,
+d5_k60_i20261112,5,60,60,14.4,1,C1,gemini,gemini-flash-lite-latest,1,0,6,5,0,1,11,5,0,15.8664,3048,185,VULN-043|VULN-018|VULN-026|VULN-013|VULN-010|VULN-009|VULN-017|VULN-061|VULN-052|VULN-030|VULN-041,
+d5_k60_i20261112,5,60,60,14.4,1,C2,gemini,gemini-flash-lite-latest,1,0,15,0,0,16,15,5,0,15.2103,46220,834,VULN-043|VULN-044|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018|VULN-018,call failed: HTTP Error 429: Too Many Requests
+d6_k20_i20261140,6,20,20,8.67,1,C1,gemini,gemini-flash-lite-latest,1,1,6,0,0,1,6,6,1,1.0312,1390,120,VULN-004|VULN-021|VULN-023|VULN-001|VULN-015|VULN-006,
+d6_k20_i20261140,6,20,20,8.67,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,6,0,0.1561,0,0,,call failed: HTTP Error 429: Too Many Requests
+d6_k20_i20261141,6,20,20,7.67,1,C1,gemini,gemini-flash-lite-latest,1,1,6,0,0,1,6,6,1,1.4086,1378,115,VULN-020|VULN-016|VULN-019|VULN-021|VULN-003|VULN-001,
+d6_k20_i20261141,6,20,20,7.67,1,C2,gemini,gemini-flash-lite-latest,1,1,6,0,0,6,6,6,1,6.3615,8489,439,VULN-020|VULN-016|VULN-019|VULN-021|VULN-003|VULN-001,
+d6_k40_i20261233,6,40,40,10.5,1,C1,gemini,gemini-flash-lite-latest,1,1,6,0,0,1,6,6,1,0.975,2226,158,VULN-014|VULN-003|VULN-004|VULN-020|VULN-018|VULN-006,
+d6_k40_i20261233,6,40,40,10.5,1,C2,gemini,gemini-flash-lite-latest,1,1,6,0,0,6,6,6,1,39.357,13577,361,VULN-014|VULN-003|VULN-004|VULN-020|VULN-018|VULN-006,
+d6_k40_i20261242,6,40,40,12.0,1,C1,gemini,gemini-flash-lite-latest,1,0,0,11,0,1,11,6,0,1.1979,2177,187,VULN-011|VULN-007|VULN-013|VULN-006|VULN-032|VULN-016|VULN-001|VULN-031|VULN-027|VULN-004|VULN-034,
+d6_k40_i20261242,6,40,40,12.0,1,C2,gemini,gemini-flash-lite-latest,1,1,6,0,0,6,6,6,1,52.1476,13245,389,VULN-020|VULN-024|VULN-031|VULN-027|VULN-004|VULN-034,
+d6_k60_i20261330,6,60,60,19.17,1,C1,gemini,gemini-flash-lite-latest,1,1,6,0,0,1,6,6,1,1.1433,3101,110,VULN-020|VULN-066|VULN-034|VULN-035|VULN-056|VULN-041,
+d6_k60_i20261330,6,60,60,19.17,1,C2,gemini,gemini-flash-lite-latest,1,0,8,0,0,9,8,6,0,9.9587,24975,759,VULN-020|VULN-032|VULN-032|VULN-032|VULN-032|VULN-032|VULN-032|VULN-032,call failed: HTTP Error 429: Too Many Requests
+d6_k60_i20261336,6,60,60,19.0,1,C1,gemini,gemini-flash-lite-latest,1,1,6,0,0,1,6,6,1,0.9303,3100,131,VULN-008|VULN-036|VULN-007|VULN-020|VULN-064|VULN-060,
+d6_k60_i20261336,6,60,60,19.0,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,6,0,0.3118,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k20_i20261414,7,20,20,9.29,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k20_i20261414,7,20,20,9.29,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.228,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k20_i20261432,7,20,20,10.57,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k20_i20261432,7,20,20,10.57,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.32,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k40_i20261808,7,40,40,17.57,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k40_i20261808,7,40,40,17.57,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.2173,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k40_i20261825,7,40,40,14.0,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k40_i20261825,7,40,40,14.0,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.345,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k60_i20262118,7,60,60,18.29,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k60_i20262118,7,60,60,18.29,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.2175,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k60_i20262252,7,60,60,17.57,1,C1,gemini,gemini-flash-lite-latest,1,0,0,0,0,0,0,7,0,0.0,0,0,,call failed: HTTP Error 429: Too Many Requests
+d7_k60_i20262252,7,60,60,17.57,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,7,0,0.2775,0,0,,call failed: HTTP Error 429: Too Many Requests
+d4_k20_i20260831,4,20,20,6.25,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,4,0,0.3478,0,0,,call failed: HTTP Error 429: Too Many Requests
+d4_k40_i20260891,4,40,40,14.0,1,C2,gemini,gemini-flash-lite-latest,1,0,1,0,0,2,1,4,0,1.6859,2087,82,VULN-018,call failed: HTTP Error 429: Too Many Requests
+d5_k40_i20261028,5,40,40,12.2,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,5,0,0.3215,0,0,,call failed: HTTP Error 429: Too Many Requests
+d5_k60_i20261112,5,60,60,14.4,1,C2,gemini,gemini-flash-lite-latest,1,0,1,0,0,2,1,5,0,1.4836,3051,80,VULN-043,call failed: HTTP Error 429: Too Many Requests
+d6_k20_i20261140,6,20,20,8.67,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,6,0,0.3113,0,0,,call failed: HTTP Error 429: Too Many Requests
+d6_k60_i20261330,6,60,60,19.17,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,6,0,0.3133,0,0,,call failed: HTTP Error 429: Too Many Requests
+d6_k60_i20261336,6,60,60,19.0,1,C2,gemini,gemini-flash-lite-latest,1,0,0,0,0,1,0,6,0,0.303,0,0,,call failed: HTTP Error 429: Too Many Requests

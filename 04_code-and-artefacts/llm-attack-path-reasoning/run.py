@@ -162,13 +162,16 @@ def run_c1(scenario, call, model, transcript_path):
     elapsed = time.time() - t0
     chain, err = parse_chain(raw)
     if chain is None:
+        # An answer that cannot be parsed is a failure of the model, not an
+        # API error: it is scored (empty chain, success 0) instead of dropped.
+        print(f"    unparseable answer ({err}), scored as a failure")
         chain = []
     if transcript_path:
         with open(transcript_path, "w") as f:
             f.write(prompt + "\n\n===== RESPONSE =====\n" + raw)
     res = verify_chain(chain, scenario)
     res.update(chain=chain, turns=1, repeat_proposals=0, time_s=elapsed,
-               in_tokens=in_tok, out_tokens=out_tok, error=err or "")
+               in_tokens=in_tok, out_tokens=out_tok, error="")
     return res
 
 

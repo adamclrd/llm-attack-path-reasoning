@@ -91,13 +91,21 @@ python run.py --systems C1 --provider ollama --model qwen2.5:14b \
               --scenarios scenarios_low.json --out results_low.csv --transcripts transcripts
 ```
 
-Then the analysis:
+Then the analysis. The scripts in `analysis/` read the original run logs in
+`logs/` and rebuild every table of the paper (run them from this folder):
 
 ```bash
-python tables.py --results results_main.csv --scenarios scenarios_v2.json --out tables.md
-python stats.py  --results results_main.csv --system C1 --by-model
+pip install pandas
+python analysis/build_runs.py     # logs/ -> analysis/runs_of_record.csv
+python analysis/tables.py         # Tables 6 to 9
+python analysis/regress.py        # Table 13, plus the submitted fits for comparison
+python analysis/metrics.py        # Tables 10 and 11: exact match, path accuracy, validity vs goal
+python analysis/figure_data.py    # ../../03_figure-data/fig05 to fig07
 python make_figures.py --outdir figures --scenarios scenarios_v2.json
 ```
+
+`analysis/replay_c2.py` is an optional cross-check: it replays every C2
+transcript with `engine.py` and classifies how each run ended.
 
 `probe.py` reports which models actually answer and at what latency and token cost,
 which is worth running before a campaign: a model listed as available can still
@@ -136,31 +144,38 @@ search failure and not an error in the ground truth.
 | `make_figures.py` | Figures 1 to 8 (`fig01` to `fig08b`), PNG at 300 dpi plus a PDF copy. |
 | `scenarios_v2.json` | Main grid, 160 instances, with per-instance metadata. |
 | `scenarios_low.json` | Low grid, 72 instances, with per-instance metadata. |
-| `results.csv` | One row per scored run (see the note below). |
+| `logs/` | The original run logs (see below). |
+| `analysis/` | Scripts that rebuild every table from `logs/`, and `runs_of_record.csv`, the run-level file they produce. |
 | `transcripts/` | One transcript per run. |
-| `figure-data/` | The counts behind each figure, one file per figure, plus `results_complete.csv` (this file plus the C1 runs recovered from the transcripts). See `figure-data/README.md`. |
 
-## What `results.csv` contains
+## The run logs
 
-One row per run, with the scenario, depth, nominal and realised distractor count,
-branching factor, system, provider, model, success flag, step counts, chain length,
-timing and token counts. A run is *scored* when its `error` column is empty; rows
-carrying an HTTP error are kept so that the coverage gaps stay visible.
+`logs/` holds the files written by `run.py` during the campaign, one row per
+run, with the scenario, depth, distractor count, system, model, success flag,
+step counts, chain, timing and token counts:
 
-This export covers:
+| File | Contents |
+| --- | --- |
+| `final.csv` | The merged file that the tables of the paper are computed from (1,952 scored runs). |
+| `results.csv` | First session: B1 and B3 on both grids, C1 on gemini-3.5-flash-lite, gemini-3.5-flash and qwen2.5:14b, and C2 on gemini-3.5-flash-lite. |
+| `results_main.csv` | C1 on gemini-3.1-flash-lite, main grid. |
+| `results_low.csv` | A separate run of B1 and B3 on the low grid (deterministic for B1; `final.csv` uses the rows of `results.csv`). |
+| `results_c2.csv` | C1 and C2 on gemini-flash-lite-latest. |
+| `results_c2b.csv` | The C2 rerun on gemini-3.5-flash-lite after the quota reset. |
+| `calib.csv` | A calibration run of qwen2.5:14b on a separate easy set. It is not part of the study. |
 
-* `B1` (232 runs) and `B3` (1160 runs) on both grids;
-* `C1` on `gemini-3.5-flash-lite` (232), `gemini-3.5-flash` (26) and `qwen2.5:14b` (97);
-* `C2` on `gemini-3.5-flash-lite` (36 rows, 12 of them scored).
+Rows with an `error` value are attempts cut by an API error (HTTP 429 or 503)
+after all retries; they are kept so the coverage gaps stay visible.
+`analysis/build_runs.py` applies the counting rules of Section 4.5 of the paper:
+a run belongs to the grid of its scenario file; an unparseable answer is a
+failure; a run cut by an API error is not scored; for C2 the first completed
+run of each instance is kept. The result is 1,953 scored runs and 38 instances
+whose run never completed.
 
-It does **not** contain the `gemini-3.1-flash-lite` runs, and its `C2` coverage is
-smaller than the paired set reported in the paper. Tables and figures that involve
-those runs cannot be reproduced from this file alone.
-
-`make_figures.py` does not read `results.csv`: Figures 5 to 8 are drawn from the
-counts reported in the result tables of the paper, which are kept in the `RESULTS`
-dictionary at the top of that file, so a figure cannot drift from its table.
-Figure 4 is read from `scenarios_v2.json`.
+`make_figures.py` draws Figures 5 to 8 from the counts in the `RESULTS`
+dictionary at the top of the file, which are the counts of the revised tables,
+so a figure cannot drift from its table. Figure 4 is read from
+`scenarios_v2.json`.
 
 ## Licence and permitted use
 
